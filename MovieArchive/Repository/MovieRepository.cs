@@ -2,6 +2,7 @@
 using MovieArchive.Models;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
+using MovieArchive.Validations;
 
 namespace MovieArchive.Repository;
 
@@ -34,10 +35,10 @@ public class MovieRepository : IMovieRepository
     {
         await _moviceCollection.InsertOneAsync(newMovie);
     }
-
-    public async Task UpdateMovie(string name,Movie updatedMovie)
-    {
-        await _moviceCollection.ReplaceOneAsync(x => x.MovieName == name, updatedMovie);
+    public async Task UpdateMovie(Movie updatedMovie)
+    { 
+        var options = new ReplaceOptions { IsUpsert = false };
+        await _moviceCollection.ReplaceOneAsync(movie => movie.Id == updatedMovie.Id, updatedMovie,options);
     }
 
     public async Task DeleteMovie(string name)

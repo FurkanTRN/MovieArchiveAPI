@@ -13,7 +13,7 @@ public class Movie
 
     public int ReleaseDate { get; set; }
 
-    public string Category { get; set; } = null!;
+    public string? Category { get; set; } = null!;
     
     public double Point { get; set; }
     

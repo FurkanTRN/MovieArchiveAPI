@@ -9,7 +9,7 @@ public interface IMovieService
     Task<List<Movie>> GetAllMovies();
     Task<Movie> GetMovieByName(string name);
     Task CreateMovie(MovieCreateRequest movie);
-    Task UpdateMovie(string name, Movie movie);
+    Task UpdateMovie( string name,MovieUpdateRequest movie);
     Task DeleteMovie(string name);
     
 }

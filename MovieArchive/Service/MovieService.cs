@@ -38,9 +38,20 @@ public class MovieService : IMovieService
         await _repository.Create(newMovie);
     }
 
-    public async Task UpdateMovie(string name, Movie movie)
+
+
+    public async Task UpdateMovie(string name,MovieUpdateRequest updatedmovie)
     {
-        await _repository.UpdateMovie(name, movie);
+        var movie = await _repository.GetMovieByName(name)!;
+        if (updatedmovie.MovieName!=null)
+        {
+            movie.MovieName = updatedmovie.MovieName;
+        }
+        movie.Note = updatedmovie.Note;
+        movie.Category = updatedmovie.Category;
+        movie.Point = updatedmovie.Point;
+        movie.ReleaseDate = updatedmovie.ReleaseYear;
+        await _repository.UpdateMovie(movie);
     }
 
     public async Task DeleteMovie(string name)

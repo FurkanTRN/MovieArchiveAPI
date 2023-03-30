@@ -34,12 +34,10 @@ public class MovieController : ControllerBase
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put(string name, Movie updatedmovie)
+        public async Task<IActionResult> Put([FromQuery]string name,[FromBody] MovieUpdateRequest updatedmovie)
         {
-                var movie = await _movieService.GetMovieByName(name);
-                updatedmovie.MovieName = name;
-                await _movieService.UpdateMovie(name, updatedmovie);
-                return Ok(movie);
+                await _movieService.UpdateMovie(name,updatedmovie);
+                return Ok();
         }
 
         [HttpDelete]
