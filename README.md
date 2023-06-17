@@ -7,7 +7,7 @@
 
 ---
 - CRUD Operations
-- Validation(Soon)
+- Validation
 - MongoDB Database
 
 ## API Endpoints
